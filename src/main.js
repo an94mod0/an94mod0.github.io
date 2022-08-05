@@ -1,6 +1,6 @@
 function store(result){
-    var map = $('#map').val();
-    var character = $('#character').val();
+    var character = $('#characterToInput').text();
+    var map = $('#mapToInput').text();
     const race = {
         timestamp:Math.floor(Date.now()/1000),
         map:map,
@@ -125,6 +125,36 @@ $(document).ready(function($){
     });  
 
     $('#selectCharacter').click(function () {
-        $('#confirm').modal('show');
+        $('#confirm_c').modal('show');
+    });
+
+    $('#character').click(function () {
+        // $('#confirm').modal('show');
+    });
+
+    $('#characterToInput').click(function () {
+        $('#confirm_c').modal('show');
+    });
+    $('#mapToInput').click(function () {
+        $('#confirm_m').modal('show');
+    });
+
+    const c_list = ['','角色A','角色B','角色C','角色D','角色E','角色F','角色G','角色H','角色I','角色J','角色K','角色L','角色M','角色N','角色O','角色P','角色Q','角色R','角色S','角色T'];
+    const m_list = ['','地圖1','地圖2','地圖3','地圖4','地圖5','地圖6']
+    $('img').click(function(){
+        var selected_id = $(this).attr('id');
+        if (selected_id.includes('_c')){
+            var idx = selected_id.split("_c")[1];
+            var v = c_list[idx];
+            $('#characterToInput').html(v);
+            $("#confirm_c").modal('hide');
+        }
+        else{
+            var idx = selected_id.split("_m")[1];
+            var v = m_list[idx];
+            $('#mapToInput').html(v);
+            $("#confirm_m").modal('hide');
+        }
+
     });
 });
